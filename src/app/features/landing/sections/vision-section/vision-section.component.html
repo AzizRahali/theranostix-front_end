@@ -1,0 +1,16 @@
+<section id="vision" class="th-section vision">
+  <div class="th-container">
+    <app-section-heading
+      appReveal
+      [eyebrow]="vision.eyebrow"
+      [heading]="vision.heading" />
+
+    <div class="vision__grid">
+      @for (pillar of vision.pillars; track pillar.index) {
+        <app-pillar-card appReveal [pillar]="pillar" />
+      }
+    </div>
+
+    <p class="vision__close" appReveal>{{ vision.closing }}</p>
+  </div>
+</section>

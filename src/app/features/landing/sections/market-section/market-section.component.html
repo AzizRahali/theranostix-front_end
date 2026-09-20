@@ -1,0 +1,23 @@
+<section id="market" class="th-section">
+  <div class="th-container">
+    <app-section-heading
+      appReveal
+      [eyebrow]="market.eyebrow"
+      [heading]="market.heading" />
+
+    <div class="market__wrap">
+      <div class="market__figs" appReveal>
+        <app-readout [readout]="market.readout" />
+        <div class="market__mini">
+          @for (stat of market.miniStats; track stat.label) {
+            <app-mini-stat [stat]="stat" />
+          }
+        </div>
+      </div>
+
+      <div class="market__chart" appReveal>
+        <app-growth-chart [bars]="market.bars" [caption]="market.chartCaption" />
+      </div>
+    </div>
+  </div>
+</section>

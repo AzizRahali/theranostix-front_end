@@ -1,0 +1,47 @@
+<section id="ask" class="th-section ask">
+  <div class="th-container">
+    <div class="ask__wrap">
+      <div class="ask__status" appReveal>
+        <app-section-heading
+          [eyebrow]="ask.eyebrow"
+          [heading]="ask.heading"
+          [onDark]="true"
+          eyebrowColor="var(--color-accent)" />
+
+        <div class="ask__chip">
+          <app-pulse-dot [size]="7" />
+          {{ ask.statusChip }}
+        </div>
+
+        <p class="ask__lede">{{ ask.lede }}</p>
+      </div>
+
+      <div class="ask__figs" appReveal>
+        <div class="ask__row">
+          @for (figure of ask.figures; track figure.label) {
+            @if (figure.style === 'readout') {
+              <app-readout [deep]="true"
+                [readout]="{ label: figure.label, value: figure.value }" />
+            } @else {
+              <div class="ask__plain">
+                <div class="ask__plain-val">{{ figure.value }}</div>
+                <div class="ask__plain-lbl">{{ figure.label }}</div>
+              </div>
+            }
+          }
+        </div>
+
+        <p class="ask__detail">{{ ask.detail }}</p>
+
+        <div class="ask__cta">
+          @for (cta of ask.ctas; track cta.label) {
+            <app-button
+              [href]="cta.href"
+              [variant]="cta.variant"
+              [onDark]="cta.variant === 'ghost'">{{ cta.label }}</app-button>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

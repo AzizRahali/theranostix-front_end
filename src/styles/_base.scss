@@ -1,0 +1,76 @@
+@use 'mixins' as *;
+
+// =============================================================================
+// Base / reset + shared layout primitives.
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+}
+
+// --- Layout primitives -------------------------------------------------------
+
+.th-container {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 24px;
+
+  @include media('sm') {
+    padding-inline: 40px;
+  }
+  @include media('xxl') {
+    padding-inline: 56px;
+  }
+}
+
+.th-section {
+  position: relative;
+  padding-block: 88px;
+
+  @include media('lg') {
+    padding-block: 128px;
+  }
+}
+
+// Visually hidden but available to assistive tech.
+.th-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

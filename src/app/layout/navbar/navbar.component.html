@@ -1,0 +1,17 @@
+<header class="nav">
+  <div class="th-container nav__row">
+    <a class="nav__mark" href="#hero">
+      <app-pulse-dot [size]="6" />
+      {{ brand.name }}
+    </a>
+
+    <div class="nav__status">
+      <app-pulse-dot [size]="6" />
+      {{ brand.navStatus }}
+    </div>
+
+    <app-button [href]="brand.requestDeckHref" variant="primary" size="sm">
+      Request Investor Deck
+    </app-button>
+  </div>
+</header>

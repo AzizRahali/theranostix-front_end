@@ -1,0 +1,97 @@
+@use 'mixins' as *;
+
+.ask {
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+}
+
+.ask__wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include media('xl') {
+    flex-direction: row;
+    gap: 64px;
+  }
+}
+
+.ask__status {
+  @include media('xl') {
+    flex: 1 1 42%;
+  }
+}
+
+.ask__figs {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  @include media('xl') {
+    flex: 1 1 58%;
+  }
+}
+
+.ask__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: rgba(var(--color-accent-rgb), 0.1);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.3);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  margin-bottom: 22px;
+}
+
+.ask__lede {
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.6;
+  color: var(--color-on-dark-soft);
+  max-width: 58ch;
+  margin: 0;
+}
+
+.ask__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.ask__plain {
+  flex: 1 1 200px;
+}
+
+.ask__plain-val {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.ask__plain-lbl {
+  font-size: 13.5px;
+  color: var(--color-on-dark-soft);
+  margin-top: 6px;
+  line-height: 1.5;
+}
+
+.ask__detail {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-on-dark-faint);
+  max-width: 52ch;
+  margin: 0;
+}
+
+.ask__cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 8px;
+}

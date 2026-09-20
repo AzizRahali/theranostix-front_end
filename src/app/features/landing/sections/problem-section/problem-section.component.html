@@ -1,0 +1,15 @@
+<section id="problem" class="th-section">
+  <div class="th-container">
+    <app-section-heading
+      appReveal
+      [eyebrow]="problem.eyebrow"
+      [heading]="problem.heading"
+      [lede]="problem.lede" />
+
+    <div class="problem__grid">
+      @for (stat of problem.stats; track stat.label) {
+        <app-stat-card appReveal [stat]="stat" />
+      }
+    </div>
+  </div>
+</section>

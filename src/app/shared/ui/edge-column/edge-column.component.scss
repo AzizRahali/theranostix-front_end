@@ -1,0 +1,67 @@
+:host {
+  display: block;
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+}
+
+:host(.edge--legacy) {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+}
+
+:host(.edge--us) {
+  background: var(--color-primary);
+  color: var(--color-on-dark);
+}
+
+.edge__title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
+}
+:host(.edge--legacy) .edge__title {
+  color: var(--color-ink-soft);
+}
+:host(.edge--us) .edge__title {
+  color: var(--color-accent-on-dark);
+}
+
+.edge__summary {
+  font-size: 15px;
+  line-height: 1.65;
+  margin: 0 0 20px;
+}
+:host(.edge--legacy) .edge__summary {
+  color: var(--color-ink-mid);
+}
+
+.edge__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edge__list li {
+  font-size: 13.5px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.edge__list li::before {
+  content: '—';
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.edge__names {
+  font-size: 12.5px;
+  color: var(--color-ink-faint);
+  margin-top: 18px;
+}

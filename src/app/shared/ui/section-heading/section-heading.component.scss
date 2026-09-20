@@ -1,0 +1,30 @@
+app-tag {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 600;
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+  margin: 0 0 20px;
+  max-width: 20ch;
+}
+
+.heading--on-dark {
+  color: var(--color-on-dark);
+}
+
+.lede {
+  font-size: clamp(16px, 1.6vw, 18px);
+  line-height: 1.6;
+  color: var(--color-ink-muted);
+  max-width: 58ch;
+  margin: 0;
+}
+
+.lede--on-dark {
+  color: var(--color-on-dark-soft);
+}

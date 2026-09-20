@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+.mini-stat__value {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.mini-stat__label {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  margin-top: 4px;
+}

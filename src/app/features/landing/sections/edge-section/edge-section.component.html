@@ -1,0 +1,14 @@
+<section id="edge" class="th-section">
+  <div class="th-container">
+    <app-section-heading
+      appReveal
+      [eyebrow]="edge.eyebrow"
+      [heading]="edge.heading" />
+
+    <div class="edge__grid">
+      @for (column of edge.columns; track column.title) {
+        <app-edge-column appReveal [column]="column" />
+      }
+    </div>
+  </div>
+</section>

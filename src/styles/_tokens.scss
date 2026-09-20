@@ -1,0 +1,60 @@
+// =============================================================================
+// Design tokens — the single source of truth for the Theranostix brand.
+// Exposed as CSS custom properties so the palette can be re-themed at runtime
+// (the source design treats accent / primary / amber as themeable levers).
+// =============================================================================
+
+:root {
+  // --- Brand ---------------------------------------------------------------
+  --color-accent: #2fd4c4; // teal — interactive / highlights
+  --color-accent-rgb: 47, 212, 196;
+  --color-primary: #0e5c63; // deep teal — figures / emphasis
+  --color-primary-rgb: 14, 92, 99;
+  --color-amber: #f5a623; // signal amber — live readouts
+  --color-amber-rgb: 245, 166, 35;
+
+  // --- Surfaces ------------------------------------------------------------
+  --color-bg: #f6f8fa;
+  --color-surface: #e8ecf1;
+  --color-dark: #1a2530; // dark sections / deepest ink
+  --color-dark-strong: #10191f;
+
+  // --- Ink (text on light) -------------------------------------------------
+  --color-ink: #1a2530;
+  --color-ink-muted: #43505e;
+  --color-ink-mid: #3c4a57;
+  --color-ink-soft: #5c6b79;
+  --color-ink-faint: #7c8c99;
+
+  // --- Ink (text on dark) --------------------------------------------------
+  --color-on-dark: #f1f5f7;
+  --color-on-dark-heading: #eaf1f5;
+  --color-on-dark-soft: #aebac4;
+  --color-on-dark-faint: #8ea0ac;
+  --color-accent-on-dark: #9fe6de;
+  --color-on-accent: #0b2a28; // text sitting on an accent fill
+
+  // --- Borders -------------------------------------------------------------
+  --color-border: #dae1e8;
+  --color-border-soft: #dde3ea;
+  --color-border-strong: #c6cfd8;
+  --color-border-hair: #d6dee6;
+
+  // --- Typography ----------------------------------------------------------
+  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  // --- Radii ---------------------------------------------------------------
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-pill: 999px;
+
+  // --- Layout --------------------------------------------------------------
+  --container-max: 1180px;
+
+  // --- Motion --------------------------------------------------------------
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-fast: 0.18s ease;
+}

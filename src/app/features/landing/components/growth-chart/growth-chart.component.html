@@ -1,0 +1,16 @@
+<figure class="chart-frame">
+  <div class="chart-frame__bars" role="img"
+       [attr.aria-label]="caption || 'Projected market growth'">
+    @for (bar of bars; track bar.caption) {
+      <div class="chart-frame__col">
+        <div class="chart-frame__bar th-bar-grow"
+             [class.chart-frame__bar--emphasis]="bar.emphasis"
+             [style.height.%]="bar.heightPct"></div>
+        <div class="chart-frame__cap">{{ bar.caption }}</div>
+      </div>
+    }
+  </div>
+  @if (caption) {
+    <figcaption class="chart-frame__caption">{{ caption }}</figcaption>
+  }
+</figure>

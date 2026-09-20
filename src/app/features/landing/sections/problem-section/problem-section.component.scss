@@ -1,0 +1,19 @@
+@use 'mixins' as *;
+
+app-section-heading {
+  display: block;
+  margin-bottom: 56px;
+}
+
+.problem__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+
+  @include media('sm') {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include media('xxl') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

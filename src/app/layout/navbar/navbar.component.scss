@@ -1,0 +1,43 @@
+@use 'mixins' as *;
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(246, 248, 250, 0.86);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border-soft);
+}
+
+.nav__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.nav__mark {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav__status {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+
+  @include media(720px) {
+    display: flex;
+  }
+}

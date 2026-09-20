@@ -1,0 +1,76 @@
+// =============================================================================
+// Shared keyframes + scroll-reveal helpers.
+// Uses the modern scroll-driven `animation-timeline: view()` where supported,
+// and degrades to a fully-visible static state everywhere else (SSR, older
+// browsers, reduced-motion) so nothing is ever hidden without JS.
+// =============================================================================
+
+@keyframes th-reveal-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes th-grow-in {
+  to {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes th-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes th-pulse-dot {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.45);
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(var(--color-accent-rgb), 0);
+    opacity: 0.65;
+  }
+}
+
+// Element rises + fades as it scrolls into view.
+.th-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: th-reveal-in linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 26%;
+}
+
+// Bar / column scales up from its base as it enters.
+.th-bar-grow {
+  transform: scaleY(0);
+  transform-origin: bottom;
+  animation: th-grow-in linear both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 40%;
+}
+
+@supports not (animation-timeline: view()) {
+  .th-reveal {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .th-bar-grow {
+    transform: scaleY(1);
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .th-reveal,
+  .th-bar-grow {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}

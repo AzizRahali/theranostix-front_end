@@ -1,0 +1,10 @@
+<h3 class="edge__title">{{ column.title }}</h3>
+<p class="edge__summary">{{ column.summary }}</p>
+<ul class="edge__list">
+  @for (point of column.points; track point) {
+    <li>{{ point }}</li>
+  }
+</ul>
+@if (column.names) {
+  <div class="edge__names">{{ column.names }}</div>
+}

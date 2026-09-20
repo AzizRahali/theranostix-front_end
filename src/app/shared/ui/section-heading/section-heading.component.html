@@ -1,0 +1,5 @@
+<app-tag [color]="eyebrowColor">{{ eyebrow }}</app-tag>
+<h2 class="heading" [class.heading--on-dark]="onDark">{{ heading }}</h2>
+@if (lede) {
+  <p class="lede" [class.lede--on-dark]="onDark">{{ lede }}</p>
+}

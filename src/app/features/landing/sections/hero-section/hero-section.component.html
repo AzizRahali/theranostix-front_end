@@ -1,0 +1,21 @@
+<section id="hero" class="hero">
+  <div class="th-container hero__row">
+    <div class="hero__copy">
+      <div class="hero__eyebrow">
+        <app-pulse-dot [size]="7" />
+        {{ hero.eyebrow }}
+      </div>
+      <h1 class="hero__title">{{ hero.title }}</h1>
+      <p class="hero__sub">{{ hero.subtitle }}</p>
+      <div class="hero__cta">
+        @for (cta of hero.ctas; track cta.label) {
+          <app-button [href]="cta.href" [variant]="cta.variant">{{ cta.label }}</app-button>
+        }
+      </div>
+    </div>
+
+    <div class="hero__art">
+      <app-rig-graphic />
+    </div>
+  </div>
+</section>

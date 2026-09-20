@@ -1,0 +1,40 @@
+@use 'mixins' as *;
+
+app-section-heading {
+  display: block;
+  margin-bottom: 48px;
+}
+
+.market__wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+
+  @include media('xl') {
+    flex-direction: row;
+    align-items: center;
+    gap: 64px;
+  }
+}
+
+.market__figs {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+
+  @include media('xl') {
+    flex: 1 1 46%;
+  }
+}
+
+.market__mini {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+}
+
+.market__chart {
+  @include media('xl') {
+    flex: 1 1 54%;
+  }
+}

@@ -1,0 +1,9 @@
+// =============================================================================
+// Global stylesheet entry — Theranostix
+// Only the design-system foundation lives here (tokens, reset, layout
+// primitives, shared animations). Everything else is component-scoped.
+// =============================================================================
+
+@use 'styles/tokens';
+@use 'styles/base';
+@use 'styles/animations';

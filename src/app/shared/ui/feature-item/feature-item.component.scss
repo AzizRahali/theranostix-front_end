@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid var(--color-border-hair);
+}
+
+.feature__num {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-accent);
+  letter-spacing: 0.08em;
+}
+
+.feature__title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.feature__desc {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  margin: 0;
+}

@@ -1,0 +1,17 @@
+<section id="solution" class="th-section solution">
+  <div class="th-container">
+    <app-section-heading
+      appReveal
+      [eyebrow]="solution.eyebrow"
+      [heading]="solution.heading"
+      [lede]="solution.lede" />
+
+    <div class="solution__grid">
+      @for (feature of solution.features; track feature.number) {
+        <app-feature-item appReveal [feature]="feature" />
+      }
+    </div>
+
+    <app-process-flow appReveal [nodes]="solution.flow" />
+  </div>
+</section>

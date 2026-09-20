@@ -1,0 +1,17 @@
+@use 'mixins' as *;
+
+app-section-heading {
+  display: block;
+  margin-bottom: 48px;
+}
+
+.edge__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @include media(780px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}

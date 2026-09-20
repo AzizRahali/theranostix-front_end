@@ -1,0 +1,21 @@
+:host {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.rig {
+  width: 100%;
+  max-width: 460px;
+}
+
+.rig__ring {
+  transform-origin: 300px 300px;
+  animation: th-spin 70s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rig__ring {
+    animation: none;
+  }
+}

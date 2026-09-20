@@ -1,0 +1,108 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.flow {
+  background: var(--color-dark);
+  border-radius: var(--radius-xl);
+  padding: 40px 24px;
+  color: var(--color-accent);
+
+  @include media('lg') {
+    padding: 52px 48px;
+  }
+}
+
+.flow__row {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  @include media('md') {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.flow__node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  padding-block: 14px;
+}
+
+.flow__ico {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.4);
+  background: rgba(var(--color-accent-rgb), 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flow__label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--color-on-dark-heading);
+}
+
+.flow__connector {
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+}
+
+.flow__line {
+  box-shadow: 0 0 8px 0 rgba(var(--color-accent-rgb), 0.5);
+}
+
+// Vertical connector between stacked nodes (mobile).
+.flow__connector--v {
+  display: flex;
+  height: 40px;
+  width: 100%;
+
+  .flow__line {
+    width: 1.5px;
+    height: 100%;
+    margin-inline: auto;
+    background: linear-gradient(
+      180deg,
+      rgba(var(--color-accent-rgb), 0.15),
+      rgba(var(--color-accent-rgb), 0.9),
+      rgba(var(--color-accent-rgb), 0.15)
+    );
+  }
+
+  @include media('md') {
+    display: none;
+  }
+}
+
+// Horizontal connector between in-line nodes (desktop).
+.flow__connector--h {
+  display: none;
+  width: 56px;
+
+  .flow__line {
+    width: 100%;
+    height: 1.5px;
+    background: linear-gradient(
+      90deg,
+      rgba(var(--color-accent-rgb), 0.15),
+      rgba(var(--color-accent-rgb), 0.9),
+      rgba(var(--color-accent-rgb), 0.15)
+    );
+  }
+
+  @include media('md') {
+    display: flex;
+  }
+}

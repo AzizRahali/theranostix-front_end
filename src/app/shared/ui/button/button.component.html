@@ -1,0 +1,11 @@
+@if (href) {
+  <a [href]="href" [ngClass]="classes">
+    <ng-container [ngTemplateOutlet]="label" />
+  </a>
+} @else {
+  <button type="button" [ngClass]="classes">
+    <ng-container [ngTemplateOutlet]="label" />
+  </button>
+}
+
+<ng-template #label><ng-content /></ng-template>

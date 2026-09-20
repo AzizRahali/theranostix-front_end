@@ -1,0 +1,28 @@
+@use 'mixins' as *;
+
+.vision {
+  background: var(--color-surface);
+}
+
+app-section-heading {
+  display: block;
+  margin-bottom: 48px;
+}
+
+.vision__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @include media('md') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.vision__close {
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--color-ink-mid);
+  margin: 44px 0 0;
+  max-width: 60ch;
+}
