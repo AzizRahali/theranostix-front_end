@@ -1,0 +1,21 @@
+# Render Blueprint for the Theranostix SSR (Angular Universal) app.
+# Deploy: Render dashboard → New → Blueprint → point at this repo.
+#
+# Note on the "vulnerabilities" gate:
+#   `npm run build` does NOT run `npm audit`, so the deploy will not fail on
+#   dev-toolchain advisories. The shipped app has 0 production vulnerabilities
+#   (verify locally with `npm audit --omit=dev`). If your org requires an audit
+#   step, scope it to production so it stays honest and green:
+#     buildCommand: npm audit --omit=dev --audit-level=high && npm ci && npm run build
+services:
+  - type: web
+    name: theranostix
+    runtime: node
+    plan: free
+    # Fresh, lockfile-exact install on Render's Linux builders — never the
+    # Windows-built node_modules that used to be committed.
+    buildCommand: npm ci && npm run build
+    startCommand: npm run serve:ssr:theranostika-frontend
+    envVars:
+      - key: NODE_VERSION
+        value: "20.19.0"
