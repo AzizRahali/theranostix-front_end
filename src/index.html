@@ -2,17 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Theranostix — Autonomous Robotics for Nuclear Medicine</title>
+  <title>THERANOSTIX — Transforming the Future of Nuclear Medicine</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description"
-        content="The first autonomous, fully remote robotic system for the safe injection of radioactive cancer therapies.">
-  <meta name="theme-color" content="#F6F8FA">
+        content="THERANOSTIX develops autonomous, remotely operated robotic solutions for the safe preparation and administration of radioactive cancer therapies.">
+  <meta name="theme-color" content="#062B2F">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300;0,400;0,500;1,300&family=Red+Hat+Text:wght@400;500&display=swap"
         rel="stylesheet">
+  <script>
+    // Opt in to scroll entrances only when JS runs. If the app has not booted
+    // within 5s (it adds `th-motion-ready`), drop the opt-in so nothing stays hidden.
+    (function (root) {
+      root.classList.add('th-motion');
+      setTimeout(function () {
+        if (!root.classList.contains('th-motion-ready')) root.classList.remove('th-motion');
+      }, 5000);
+    })(document.documentElement);
+  </script>
 </head>
 <body>
   <app-root></app-root>

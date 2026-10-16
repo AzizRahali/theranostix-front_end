@@ -1,0 +1,19 @@
+:host {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-strong);
+}
+
+.brand__arc {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: th-spin 1.4s var(--ease-out) 0.5s both;
+}
+
+.brand__word {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}

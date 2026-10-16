@@ -1,27 +1,61 @@
 @use 'mixins' as *;
 
 .footer {
-  border-top: 1px solid var(--color-border-soft);
-  padding-block: 40px;
+  padding-block: 80px 32px;
+  border-top: 1px solid var(--line);
 }
 
-.footer__row {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  font-size: 13px;
-  color: var(--color-ink-faint);
+.footer__grid {
+  display: grid;
+  gap: 48px;
 
-  @include media(700px) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+  @include media('md') {
+    grid-template-columns: 2fr 1fr 1fr;
   }
 }
 
-.footer__mark {
+.footer__tagline {
+  margin: 20px 0 0;
+  max-width: 32ch;
+  color: var(--text-muted);
+}
+
+.footer__title {
+  margin: 0 0 18px;
   font-family: var(--font-display);
-  font-weight: 700;
-  color: var(--color-ink);
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-accent);
+}
+
+.footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.footer__list a,
+.footer__email {
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+
+  &:hover {
+    color: var(--text-strong);
+  }
+}
+
+.footer__bottom {
+  margin-top: 72px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--text-muted);
 }

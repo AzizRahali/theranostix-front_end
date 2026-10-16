@@ -1,7 +1,7 @@
 @use 'mixins' as *;
 
 // =============================================================================
-// Base / reset + shared layout primitives.
+// Base / reset, surfaces and shared layout primitives.
 // =============================================================================
 
 *,
@@ -12,13 +12,16 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px; // keep anchored sections clear of the fixed nav
 }
 
 body {
   margin: 0;
   font-family: var(--font-body);
-  background: var(--color-bg);
-  color: var(--color-ink);
+  font-size: 16px;
+  line-height: 1.6;
+  background: var(--color-deep);
+  color: var(--text-strong);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -38,28 +41,87 @@ button {
   font: inherit;
 }
 
+// --- Surfaces ----------------------------------------------------------------
+
+.th-surface-deep {
+  background: var(--color-deep);
+  color: var(--text-strong);
+  --text-strong: var(--color-on-deep);
+  --text-muted: var(--color-on-deep-muted);
+  --text-accent: var(--color-accent-soft);
+  --line: var(--color-line-deep);
+}
+
+.th-surface-paper {
+  background: var(--color-paper);
+  color: var(--text-strong);
+  --text-strong: var(--color-ink);
+  --text-muted: var(--color-ink-muted);
+  --text-accent: var(--color-accent-ink);
+  --line: var(--color-line-paper);
+}
+
 // --- Layout primitives -------------------------------------------------------
 
 .th-container {
   max-width: var(--container-max);
   margin-inline: auto;
-  padding-inline: 24px;
+  padding-inline: 20px;
 
   @include media('sm') {
-    padding-inline: 40px;
+    padding-inline: 32px;
   }
-  @include media('xxl') {
-    padding-inline: 56px;
+  @include media('xl') {
+    padding-inline: 48px;
   }
 }
 
 .th-section {
   position: relative;
-  padding-block: 88px;
+  overflow: clip; // contain decorative orbits
+  padding-block: 96px;
 
   @include media('lg') {
-    padding-block: 128px;
+    padding-block: 144px;
   }
+}
+
+// Heading on one side, supporting content on the other.
+.th-split {
+  display: grid;
+  gap: 40px;
+
+  @include media('xl') {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+}
+
+// Long-form copy.
+.th-prose p {
+  margin: 0 0 20px;
+  max-width: 60ch;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Faint blueprint grid behind a section's content; fades toward the edges.
+.th-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(var(--color-accent-rgb), 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--color-accent-rgb), 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse at 30% 45%, #000 0%, transparent 72%);
 }
 
 // Visually hidden but available to assistive tech.

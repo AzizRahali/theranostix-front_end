@@ -1,0 +1,14 @@
+<section id="contact" class="th-section th-surface-paper">
+  <div class="th-container th-split contact">
+    <div appReveal>
+      <app-eyebrow>{{ contact.eyebrow }}</app-eyebrow>
+      <app-accent-heading [parts]="contact.heading" />
+    </div>
+
+    <div class="contact__side" appReveal [revealDelay]="200">
+      <p class="contact__text">{{ contact.text }}</p>
+      <a class="contact__email" [href]="contact.email.href">{{ contact.email.label }}</a>
+      <app-circle-link [href]="contact.cta.href" [label]="contact.cta.label" />
+    </div>
+  </div>
+</section>

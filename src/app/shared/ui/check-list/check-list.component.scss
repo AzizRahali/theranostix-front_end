@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--line);
+}
+
+.list__item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-block: 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--text-strong);
+}
+
+.list__mark {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(var(--color-accent-rgb), 0.18);
+}
+
+:host-context(.th-play) {
+  .list__item {
+    --t: calc(var(--reveal-delay, 0ms) + var(--play-delay, 0ms) + var(--i) * 120ms);
+    animation: th-slide-in 0.8s var(--ease-out) both;
+    animation-delay: var(--t);
+  }
+  .list__mark {
+    animation: th-pulse 1.2s ease-out both;
+    animation-delay: calc(var(--t) + 350ms);
+  }
+}

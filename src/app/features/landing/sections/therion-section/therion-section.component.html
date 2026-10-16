@@ -1,0 +1,32 @@
+<section id="therion" class="th-section th-surface-paper">
+  <div class="th-container therion">
+    <figure class="therion__media" appReveal="wipe">
+      <!-- Same file as the hero (already preloaded there); `priority` keeps
+           NgOptimizedImage's LCP check consistent for the shared URL. -->
+      <img class="therion__img" ngSrc="assets/images/therion.webp" fill priority
+           sizes="(min-width: 960px) 46vw, 100vw" [alt]="therion.imageAlt" />
+      <app-hud-frame class="therion__hud" [topLabel]="therion.hud.top"
+                     [bottomLabel]="therion.hud.bottom" />
+    </figure>
+
+    <div appReveal [revealDelay]="200">
+      <app-eyebrow>{{ therion.eyebrow }}</app-eyebrow>
+      <app-accent-heading [parts]="therion.heading" />
+
+      <p class="therion__status">
+        <span class="therion__dot" aria-hidden="true"></span>{{ therion.status }}
+      </p>
+
+      <div class="th-prose"><p>{{ therion.intro }}</p></div>
+
+      <ul class="therion__chips" aria-label="Key capabilities">
+        @for (capability of therion.capabilities; track capability) {
+          <li [style.--i]="$index">{{ capability }}</li>
+        }
+      </ul>
+
+      <h3 class="therion__subhead">{{ therion.benefitsTitle }}</h3>
+      <app-check-list [items]="therion.benefits" />
+    </div>
+  </div>
+</section>

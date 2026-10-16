@@ -1,16 +1,15 @@
-<section id="vision" class="th-section vision">
-  <div class="th-container">
-    <app-section-heading
-      appReveal
-      [eyebrow]="vision.eyebrow"
-      [heading]="vision.heading" />
+<section id="vision" class="th-section th-surface-deep th-grid">
+  <app-orbit class="vision__orbit" appReveal="fade" />
 
-    <div class="vision__grid">
-      @for (pillar of vision.pillars; track pillar.index) {
-        <app-pillar-card appReveal [pillar]="pillar" />
+  <div class="th-container th-split">
+    <div appReveal>
+      <app-eyebrow>{{ vision.eyebrow }}</app-eyebrow>
+      <app-accent-heading [parts]="vision.heading" />
+    </div>
+    <div class="th-prose" appReveal [revealDelay]="200">
+      @for (paragraph of vision.paragraphs; track $index) {
+        <p>{{ paragraph }}</p>
       }
     </div>
-
-    <p class="vision__close" appReveal>{{ vision.closing }}</p>
   </div>
 </section>

@@ -1,20 +1,166 @@
 // =============================================================================
-// Shared keyframes + scroll-reveal helpers.
-// Uses the modern scroll-driven `animation-timeline: view()` where supported,
-// and degrades to a fully-visible static state everywhere else (SSR, older
-// browsers, reduced-motion) so nothing is ever hidden without JS.
+// Motion layer — shared keyframes and the entrance ("play") contract.
+//
+// Contract:
+//   .th-reveal  An element that enters when scrolled into view (RevealDirective).
+//               Hidden only while `html.th-motion` is set, i.e. JS is running.
+//   .th-play    "Play your entrance now". Added by RevealDirective on
+//               intersection, or set statically (the hero plays on load,
+//               pure CSS). Components choreograph their own parts with
+//               `:host-context(.th-play)`, offset by two inherited variables:
+//                 --reveal-delay  stagger set by RevealDirective
+//                 --play-delay    offset a section gives a child component
+//
+// All keyframes live here (not in components) so every component shares one
+// vocabulary and component styles stay small.
 // =============================================================================
 
-@keyframes th-reveal-in {
+// Animatable angle for the orbit ring's draw-on sweep.
+@property --orbit-sweep {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 360deg;
+}
+
+@keyframes th-rise {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
   to {
     opacity: 1;
     transform: none;
   }
 }
 
-@keyframes th-grow-in {
+@keyframes th-fade {
+  from {
+    opacity: 0;
+  }
   to {
-    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes th-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes th-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Word rises out of its clipping mask.
+@keyframes th-word {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: none;
+  }
+}
+
+// Horizontal rule draws from its transform-origin.
+@keyframes th-draw-x {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+// SVG stroke draws on (requires pathLength="1" and stroke-dasharray: 1).
+@keyframes th-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+// Text types out left to right (pair with a steps() timing function).
+@keyframes th-type {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+// Image materializes upward from an overexposed, desaturated state.
+@keyframes th-wipe-up {
+  from {
+    clip-path: inset(100% 0 0 0);
+    filter: brightness(1.9) saturate(0);
+  }
+  60% {
+    filter: brightness(1.25) saturate(0.5);
+  }
+  to {
+    clip-path: inset(0);
+    filter: none;
+  }
+}
+
+// Viewfinder corner snaps in from an offset, then flickers as it "locks".
+@keyframes th-lock {
+  from {
+    opacity: 0;
+    transform: translate(var(--lock-x, 0), var(--lock-y, 0));
+  }
+  55% {
+    opacity: 1;
+    transform: none;
+  }
+  68% {
+    opacity: 0.2;
+  }
+  80%,
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Full-height band whose bright lower edge sweeps through its container.
+@keyframes th-scan {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  15%,
+  80% {
+    opacity: 1;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes th-orbit-draw {
+  from {
+    --orbit-sweep: 0deg;
+  }
+  to {
+    --orbit-sweep: 360deg;
   }
 }
 
@@ -24,53 +170,63 @@
   }
 }
 
-@keyframes th-pulse-dot {
+@keyframes th-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.45);
-    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.55);
   }
   50% {
-    box-shadow: 0 0 0 6px rgba(var(--color-accent-rgb), 0);
-    opacity: 0.65;
+    box-shadow: 0 0 0 7px rgba(var(--color-accent-rgb), 0);
   }
 }
 
-// Element rises + fades as it scrolls into view.
-.th-reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  animation: th-reveal-in linear both;
-  animation-timeline: view();
-  animation-range: entry 0% cover 26%;
-}
-
-// Bar / column scales up from its base as it enters.
-.th-bar-grow {
-  transform: scaleY(0);
-  transform-origin: bottom;
-  animation: th-grow-in linear both;
-  animation-timeline: view();
-  animation-range: entry 10% cover 40%;
-}
-
-@supports not (animation-timeline: view()) {
-  .th-reveal {
-    opacity: 1;
-    transform: none;
-    animation: none;
-  }
-  .th-bar-grow {
-    transform: scaleY(1);
-    animation: none;
+@keyframes th-blink {
+  50% {
+    opacity: 0;
   }
 }
+
+@keyframes th-progress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+// --- Entrance contract -------------------------------------------------------
+
+@media (prefers-reduced-motion: no-preference) {
+  .th-motion .th-reveal:not(.th-play) {
+    opacity: 0;
+  }
+}
+
+.th-motion .th-reveal.th-play {
+  animation: th-rise 1s var(--ease-out) both;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+.th-motion .th-reveal--fade.th-play {
+  animation-name: th-fade;
+}
+
+.th-motion .th-reveal--wipe.th-play {
+  animation-name: th-wipe-up;
+  animation-duration: 1.6s;
+}
+
+// --- Reduced motion: every animation jumps straight to its end state ---------
 
 @media (prefers-reduced-motion: reduce) {
-  .th-reveal,
-  .th-bar-grow {
-    opacity: 1 !important;
-    transform: none !important;
-    animation: none !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }

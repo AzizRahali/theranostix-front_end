@@ -1,0 +1,87 @@
+@use 'mixins' as *;
+
+.therion {
+  display: grid;
+  gap: 56px;
+
+  @include media('xl') {
+    grid-template-columns: 1fr 1fr;
+    gap: 88px;
+    align-items: center;
+  }
+}
+
+.therion__media {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--color-deep);
+}
+
+// Frame the actuator module in the lower half of the render.
+.therion__img {
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+.therion__hud {
+  inset: 11%;
+  --play-delay: 1100ms; // lock on once the image has materialized
+}
+
+.therion__status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin: 28px 0;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  background: rgba(var(--color-accent-rgb), 0.12);
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-accent);
+}
+
+.therion__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: th-pulse 2.4s ease-in-out infinite;
+}
+
+// Capability chips snap in one after another once the copy plays.
+.th-play .therion__chips li {
+  animation: th-rise 0.7s var(--ease-out) both;
+  animation-delay: calc(var(--reveal-delay, 0ms) + 600ms + var(--i) * 90ms);
+}
+
+.therion__chips {
+  list-style: none;
+  margin: 32px 0 48px;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  li {
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    color: var(--text-strong);
+  }
+}
+
+.therion__subhead {
+  margin: 0 0 16px;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}

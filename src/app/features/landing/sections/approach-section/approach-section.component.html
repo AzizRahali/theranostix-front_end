@@ -1,0 +1,19 @@
+<section id="approach" class="th-section th-surface-deep th-grid">
+  <app-orbit class="approach__orbit" appReveal="fade" />
+
+  <div class="th-container">
+    <div class="th-split approach__head">
+      <div appReveal>
+        <app-eyebrow>{{ approach.eyebrow }}</app-eyebrow>
+        <app-accent-heading [parts]="approach.heading" />
+      </div>
+      <p class="approach__lede" appReveal [revealDelay]="250">{{ approach.lede }}</p>
+    </div>
+
+    <div class="approach__grid">
+      @for (pillar of approach.pillars; track pillar.number; let i = $index) {
+        <app-feature-item appReveal [revealDelay]="i * 160" [feature]="pillar" />
+      }
+    </div>
+  </div>
+</section>

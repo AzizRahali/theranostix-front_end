@@ -1,14 +1,15 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { VISION } from '../../../../core/data/landing-content';
-import { RevealDirective } from '../../../../shared/directives/reveal.directive';
-import { PillarCardComponent } from '../../../../shared/ui/pillar-card/pillar-card.component';
-import { SectionHeadingComponent } from '../../../../shared/ui/section-heading/section-heading.component';
+import { RevealDirective } from '../../../../shared/motion/reveal.directive';
+import { AccentHeadingComponent } from '../../../../shared/ui/accent-heading/accent-heading.component';
+import { EyebrowComponent } from '../../../../shared/ui/eyebrow/eyebrow.component';
+import { OrbitComponent } from '../../../../shared/ui/orbit/orbit.component';
 
-/** Why now: the three converging shifts behind the opportunity. */
+/** Vision: technology shaped by nuclear medicine technologists in hot labs. */
 @Component({
   selector: 'app-vision-section',
   standalone: true,
-  imports: [SectionHeadingComponent, PillarCardComponent, RevealDirective],
+  imports: [AccentHeadingComponent, EyebrowComponent, OrbitComponent, RevealDirective],
   templateUrl: './vision-section.component.html',
   styleUrl: './vision-section.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

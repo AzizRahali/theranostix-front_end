@@ -1,0 +1,11 @@
+@if (level === 1) {
+  <h1 class="heading heading--xl"><ng-container [ngTemplateOutlet]="wordRuns" /></h1>
+} @else {
+  <h2 class="heading"><ng-container [ngTemplateOutlet]="wordRuns" /></h2>
+}
+
+<ng-template #wordRuns>
+  @for (word of words; track $index; let last = $last) {
+    <span class="word">@if (word.accent) {<em class="word__in" [style.--i]="$index">{{ word.text }}</em>} @else {<span class="word__in" [style.--i]="$index">{{ word.text }}</span>}</span>@if (!last) {{{ ' ' }}}
+  }
+</ng-template>

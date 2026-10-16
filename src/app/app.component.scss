@@ -2,21 +2,48 @@
   display: block;
 }
 
+// The navigation drops in as part of the page's boot sequence.
+app-navbar {
+  display: block;
+  animation: th-drop 0.8s var(--ease-out) 0.2s both;
+}
+
+// Reading-progress line driven by the page's scroll position (CSS only).
+.scroll-progress {
+  display: none;
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    display: block;
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 60;
+    height: 2px;
+    background: var(--color-accent);
+    box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.7);
+    transform-origin: left;
+    animation: th-progress linear both;
+    animation-timeline: scroll(root);
+  }
+}
+
 .skip-link {
   position: absolute;
   left: 16px;
-  top: -48px;
+  top: -64px;
   z-index: 100;
-  padding: 10px 16px;
-  border-radius: var(--radius-sm);
-  background: var(--color-primary);
-  color: var(--color-on-dark);
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent);
+  color: var(--color-deep);
+  font-family: var(--font-display);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 500;
   transition: top var(--transition-fast);
 
   &:focus-visible {
-    top: 12px;
+    top: 16px;
     outline: none;
   }
 }

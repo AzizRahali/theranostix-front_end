@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { ChangeDetectionStrategy, Component, afterNextRender, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FooterComponent } from './layout/footer/footer.component';
 import { NavbarComponent } from './layout/navbar/navbar.component';
@@ -12,4 +13,10 @@ import { NavbarComponent } from './layout/navbar/navbar.component';
   styleUrl: './app.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent {}
+export class AppComponent {
+  constructor() {
+    // Tell the index.html failsafe the app booted, so scroll entrances stay on.
+    const root = inject(DOCUMENT).documentElement;
+    afterNextRender(() => root.classList.add('th-motion-ready'));
+  }
+}

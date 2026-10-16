@@ -1,0 +1,93 @@
+$corner: 22px;
+
+:host {
+  position: absolute;
+  inset: 8%;
+  --t: calc(var(--reveal-delay, 0ms) + var(--play-delay, 0ms));
+}
+
+.hud__field {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.hud__scan {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 82%,
+    rgba(var(--color-accent-rgb), 0.04) 97.2%,
+    rgba(var(--color-accent-rgb), 0.85) 99.7%,
+    transparent 100%
+  );
+}
+
+.hud__corner {
+  position: absolute;
+  width: $corner;
+  height: $corner;
+  border: 0 solid var(--color-accent);
+
+  &--tl { top: 0; left: 0; border-width: 1.5px 0 0 1.5px; --lock-x: -14px; --lock-y: -14px; }
+  &--tr { top: 0; right: 0; border-width: 1.5px 1.5px 0 0; --lock-x: 14px; --lock-y: -14px; }
+  &--bl { bottom: 0; left: 0; border-width: 0 0 1.5px 1.5px; --lock-x: -14px; --lock-y: 14px; }
+  &--br { bottom: 0; right: 0; border-width: 0 1.5px 1.5px 0; --lock-x: 14px; --lock-y: 14px; }
+}
+
+.hud__label {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent-soft);
+
+  &--top { top: -26px; left: 0; }
+  &--bottom { bottom: -26px; right: 0; }
+}
+
+.hud__caret {
+  width: 6px;
+  height: 11px;
+  background: var(--color-accent);
+  animation: th-blink 1s steps(1) infinite;
+}
+
+.hud__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  animation: th-pulse 2.4s ease-in-out infinite;
+}
+
+:host-context(.th-play) {
+  .hud__corner {
+    animation: th-lock 0.9s var(--ease-out) both;
+    animation-delay: var(--t);
+  }
+  .hud__corner--tr { animation-delay: calc(var(--t) + 80ms); }
+  .hud__corner--br { animation-delay: calc(var(--t) + 160ms); }
+  .hud__corner--bl { animation-delay: calc(var(--t) + 240ms); }
+
+  .hud__label--top {
+    animation: th-type 1.1s steps(26, end) both;
+    animation-delay: calc(var(--t) + 400ms);
+  }
+  .hud__label--bottom {
+    animation: th-fade 0.8s ease-out both;
+    animation-delay: calc(var(--t) + 1100ms);
+  }
+  .hud__scan {
+    animation: th-scan 5s ease-in-out infinite;
+    animation-delay: calc(var(--t) + 300ms);
+  }
+}

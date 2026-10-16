@@ -3,12 +3,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ButtonVariant } from '../../../core/models/landing.model';
 
 /**
- * Brand button. Renders as an anchor when `href` is set (the landing page's
- * CTAs are all in-page links), otherwise as a native `<button>`.
+ * Pill button. Renders as an anchor when `href` is set, otherwise as a native
+ * `<button>`. Ghost styling follows the surrounding surface tokens.
  *
  * ```html
- * <app-button href="#ask" variant="primary">Request Investor Deck</app-button>
- * <app-button variant="ghost" size="sm" (pressed)="...">Book a Call</app-button>
+ * <app-button href="#contact" variant="primary" size="sm">Contact us</app-button>
  * ```
  */
 @Component({
@@ -23,15 +22,12 @@ export class ButtonComponent {
   @Input() variant: ButtonVariant = 'primary';
   @Input() size: 'md' | 'sm' = 'md';
   @Input() href?: string;
-  /** Style the ghost variant for placement on a dark surface. */
-  @Input() onDark = false;
 
   get classes(): Record<string, boolean> {
     return {
-      'btn': true,
+      btn: true,
       [`btn--${this.variant}`]: true,
       'btn--sm': this.size === 'sm',
-      'btn--on-dark': this.onDark,
     };
   }
 }

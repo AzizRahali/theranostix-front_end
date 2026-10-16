@@ -1,0 +1,45 @@
+:host {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+// 1px ring, revealed by a conic mask whose sweep animates from 0 to 360deg.
+.orbit__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(var(--color-accent-rgb), 0.35);
+  mask-image: conic-gradient(from -90deg, #000 var(--orbit-sweep), transparent 0);
+}
+
+// Rotating layer carrying the glowing node at 12 o'clock.
+.orbit__node {
+  position: absolute;
+  inset: 0;
+  animation: th-spin 48s linear infinite;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: calc(50% - 3px);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 14px 3px rgba(var(--color-accent-rgb), 0.65);
+  }
+}
+
+:host-context(.th-play) {
+  .orbit__ring {
+    animation: th-orbit-draw 2.6s var(--ease-out) both;
+    animation-delay: calc(var(--reveal-delay, 0ms) + var(--play-delay, 0ms));
+  }
+
+  .orbit__node::before {
+    animation: th-fade 0.8s ease-out both;
+    animation-delay: calc(var(--reveal-delay, 0ms) + var(--play-delay, 0ms) + 2.2s);
+  }
+}

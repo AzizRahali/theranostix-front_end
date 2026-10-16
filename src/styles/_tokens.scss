@@ -1,60 +1,50 @@
 // =============================================================================
 // Design tokens — the single source of truth for the Theranostix brand.
-// Exposed as CSS custom properties so the palette can be re-themed at runtime
-// (the source design treats accent / primary / amber as themeable levers).
+//
+// Two layers:
+//   1. Palette tokens (--color-*): raw brand values.
+//   2. Surface tokens (--text-*, --line): semantic values that a surface
+//      (`.th-surface-deep` / `.th-surface-paper`) redefines. Components only
+//      read surface tokens, so they render correctly on either background.
 // =============================================================================
 
 :root {
-  // --- Brand ---------------------------------------------------------------
-  --color-accent: #2fd4c4; // teal — interactive / highlights
+  // --- Palette -------------------------------------------------------------
+  --color-deep: #062b2f; // teal-black: hero, dark sections, footer
+  --color-deep-rgb: 6, 43, 47;
+  --color-paper: #ffffff;
+  --color-paper-alt: #f1f6f6;
+
+  --color-accent: #2fd4c4; // brand teal: CTAs, rules, markers
   --color-accent-rgb: 47, 212, 196;
-  --color-primary: #0e5c63; // deep teal — figures / emphasis
-  --color-primary-rgb: 14, 92, 99;
-  --color-amber: #f5a623; // signal amber — live readouts
-  --color-amber-rgb: 245, 166, 35;
+  --color-accent-soft: #8fe3d9; // accent text on deep surfaces
+  --color-accent-ink: #0b7570; // accent text on paper (AA on white)
 
-  // --- Surfaces ------------------------------------------------------------
-  --color-bg: #f6f8fa;
-  --color-surface: #e8ecf1;
-  --color-dark: #1a2530; // dark sections / deepest ink
-  --color-dark-strong: #10191f;
+  --color-ink: #0b3236; // primary text on paper
+  --color-ink-muted: #45666a;
+  --color-line-paper: #d5e2e3;
 
-  // --- Ink (text on light) -------------------------------------------------
-  --color-ink: #1a2530;
-  --color-ink-muted: #43505e;
-  --color-ink-mid: #3c4a57;
-  --color-ink-soft: #5c6b79;
-  --color-ink-faint: #7c8c99;
+  --color-on-deep: #ffffff;
+  --color-on-deep-muted: rgba(255, 255, 255, 0.68);
+  --color-line-deep: rgba(255, 255, 255, 0.14);
 
-  // --- Ink (text on dark) --------------------------------------------------
-  --color-on-dark: #f1f5f7;
-  --color-on-dark-heading: #eaf1f5;
-  --color-on-dark-soft: #aebac4;
-  --color-on-dark-faint: #8ea0ac;
-  --color-accent-on-dark: #9fe6de;
-  --color-on-accent: #0b2a28; // text sitting on an accent fill
-
-  // --- Borders -------------------------------------------------------------
-  --color-border: #dae1e8;
-  --color-border-soft: #dde3ea;
-  --color-border-strong: #c6cfd8;
-  --color-border-hair: #d6dee6;
+  // --- Surface defaults (deep) ---------------------------------------------
+  --text-strong: var(--color-on-deep);
+  --text-muted: var(--color-on-deep-muted);
+  --text-accent: var(--color-accent-soft);
+  --line: var(--color-line-deep);
 
   // --- Typography ----------------------------------------------------------
-  --font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
-  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Red Hat Display', system-ui, sans-serif;
+  --font-body: 'Red Hat Text', system-ui, sans-serif;
 
-  // --- Radii ---------------------------------------------------------------
-  --radius-sm: 8px;
+  // --- Shape & layout ------------------------------------------------------
   --radius-md: 12px;
-  --radius-lg: 14px;
-  --radius-xl: 16px;
+  --radius-lg: 20px;
   --radius-pill: 999px;
-
-  // --- Layout --------------------------------------------------------------
-  --container-max: 1180px;
+  --container-max: 1240px;
 
   // --- Motion --------------------------------------------------------------
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --transition-fast: 0.18s ease;
+  --transition-fast: 0.2s ease;
 }

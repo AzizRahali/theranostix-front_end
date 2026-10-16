@@ -1,0 +1,38 @@
+@use 'mixins' as *;
+
+.contact {
+  @include media('xl') {
+    align-items: end;
+  }
+}
+
+.contact__side {
+  app-circle-link { --play-delay: 400ms; }
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.contact__text {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.contact__email {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--text-strong);
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 4px;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+
+  &:hover {
+    color: var(--text-accent);
+    border-color: var(--color-accent);
+  }
+}
