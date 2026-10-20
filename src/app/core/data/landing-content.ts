@@ -15,8 +15,8 @@ const SECTION_LINKS = [
 ] satisfies Link[];
 
 const CONTACT_EMAIL = {
-  label: 'wally@theranostix.com',
-  href: 'mailto:wally@theranostix.com',
+  label: 'wally@theranostixrobot.com',
+  href: 'mailto:wally@theranostixrobot.com',
 } satisfies Link;
 
 export const NAV = {
@@ -134,5 +134,4 @@ export const FOOTER = {
   tagline: 'Transforming the future of nuclear medicine.',
   links: SECTION_LINKS,
   email: CONTACT_EMAIL,
-  credit: 'Created by Walid Rahali',
 } as const;
