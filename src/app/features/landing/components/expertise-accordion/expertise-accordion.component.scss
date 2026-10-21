@@ -1,0 +1,128 @@
+@use 'mixins' as *;
+
+:host {
+  display: block;
+}
+
+.acc {
+  border-top: 1px solid var(--line);
+}
+
+.acc__item {
+  border-bottom: 1px solid var(--line);
+}
+
+.acc__trigger {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 44px 1fr 44px;
+  align-items: center;
+  gap: 16px;
+  padding-block: 28px;
+  border: 0;
+  background: none;
+  text-align: left;
+  color: var(--text-strong);
+  cursor: pointer;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 4px;
+  }
+
+  @include media('md') {
+    grid-template-columns: 72px 1fr 52px;
+  }
+}
+
+.acc__num {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--text-accent);
+}
+
+.acc__title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 30px);
+  font-weight: 300;
+  line-height: 1.2;
+  transition: transform 0.35s var(--ease-out), color var(--transition-fast);
+
+  .acc__trigger:hover & {
+    transform: translateX(6px);
+  }
+  .is-open & {
+    color: var(--text-accent);
+  }
+}
+
+app-toggle-icon {
+  justify-self: end;
+}
+
+// Height animates via grid rows (0fr ↔ 1fr), no JS measuring.
+.acc__panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.55s var(--ease-out);
+
+  .is-open & {
+    grid-template-rows: 1fr;
+  }
+}
+
+.acc__clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.acc__body {
+  display: grid;
+  gap: 28px;
+  padding-bottom: 36px;
+
+  @include media('md') {
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    padding-inline: 88px 68px; // align under the title, clear of the icon
+  }
+}
+
+.acc__summary {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.acc__services {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+
+  li {
+    position: relative;
+    padding-left: 24px;
+    font-size: 15.5px;
+    line-height: 1.5;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      width: 12px;
+      height: 1px;
+      background: var(--color-accent);
+    }
+  }
+
+  .is-open & li {
+    animation: th-slide-in 0.5s var(--ease-out) both;
+    animation-delay: calc(150ms + var(--i) * 60ms);
+  }
+}

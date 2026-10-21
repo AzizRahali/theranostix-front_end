@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ABOUT } from '../../../../core/data/landing-content';
 import { RevealDirective } from '../../../../shared/motion/reveal.directive';
+import { SpyTargetDirective } from '../../../../shared/navigation/spy-target.directive';
 import { AccentHeadingComponent } from '../../../../shared/ui/accent-heading/accent-heading.component';
 import { EyebrowComponent } from '../../../../shared/ui/eyebrow/eyebrow.component';
 
@@ -8,9 +9,9 @@ import { EyebrowComponent } from '../../../../shared/ui/eyebrow/eyebrow.componen
 @Component({
   selector: 'app-about-section',
   standalone: true,
-  imports: [AccentHeadingComponent, EyebrowComponent, RevealDirective],
+  imports: [AccentHeadingComponent, EyebrowComponent, RevealDirective, SpyTargetDirective],
   template: `
-    <section id="about" class="th-section th-surface-paper">
+    <section id="about" appSpyTarget class="th-section th-surface-paper">
       <div class="th-container th-split">
         <div appReveal>
           <app-eyebrow>{{ about.eyebrow }}</app-eyebrow>

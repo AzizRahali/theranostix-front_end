@@ -1,0 +1,23 @@
+<!-- Part of the Consulting chapter: lights the same nav link. -->
+<section class="th-section th-surface-deep th-grid" appSpyTarget="consulting">
+  <app-orbit class="concept__orbit" appReveal="fade" />
+
+  <div class="th-container">
+    <div class="th-split">
+      <div appReveal>
+        <app-eyebrow>{{ concept.eyebrow }}</app-eyebrow>
+        <app-accent-heading [parts]="concept.heading" />
+      </div>
+      <div class="th-prose" appReveal [revealDelay]="200">
+        @for (paragraph of concept.paragraphs; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+    </div>
+
+    <div class="concept__track" appReveal>
+      <h3 class="concept__track-title">{{ concept.requirementsTitle }}</h3>
+      <app-node-track [steps]="concept.requirements" />
+    </div>
+  </div>
+</section>

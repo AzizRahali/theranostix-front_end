@@ -1,0 +1,97 @@
+@use 'mixins' as *;
+
+$node: 44px;
+
+:host {
+  display: block;
+  --t: calc(var(--reveal-delay, 0ms) + var(--play-delay, 0ms));
+}
+
+.track {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 28px;
+
+  // Connecting line through the node centres.
+  &::before {
+    content: '';
+    position: absolute;
+    top: $node * 0.5;
+    bottom: $node * 0.5;
+    left: $node * 0.5;
+    width: 1px;
+    background: rgba(var(--color-accent-rgb), 0.45);
+    transform-origin: top;
+  }
+
+  @include media('md') {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+
+    &::before {
+      inset: ($node * 0.5) 10% auto; // first to last column centre
+      width: auto;
+      height: 1px;
+      transform-origin: left;
+    }
+  }
+}
+
+.track__step {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  @include media('md') {
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+  }
+}
+
+.track__node {
+  position: relative; // above the line
+  flex-shrink: 0;
+  width: $node;
+  height: $node;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--color-deep);
+  border: 1px solid rgba(var(--color-accent-rgb), 0.6);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-accent);
+}
+
+.track__label {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.35;
+  color: var(--text-strong);
+}
+
+:host-context(.th-play) {
+  .track::before {
+    animation: th-draw-y 1.4s var(--ease-out) both;
+    animation-delay: var(--t);
+
+    @include media('md') {
+      animation-name: th-draw-x;
+    }
+  }
+  .track__node {
+    animation: th-node-on 0.8s ease-out both;
+    animation-delay: calc(var(--t) + 250ms + var(--i) * 200ms);
+  }
+  .track__label {
+    animation: th-fade 0.6s ease-out both;
+    animation-delay: calc(var(--t) + 400ms + var(--i) * 200ms);
+  }
+}

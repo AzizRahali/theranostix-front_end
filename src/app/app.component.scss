@@ -2,10 +2,15 @@
   display: block;
 }
 
-// The navigation drops in as part of the page's boot sequence.
+// The navigation drops in as part of the page's boot sequence. Own layer
+// (z-index) so the hero can't paint over it mid-animation, and `backwards`
+// fill so no transform lingers afterwards: a transformed ancestor would trap
+// the fixed header and mobile menu inside this zero-height host.
 app-navbar {
+  position: relative;
+  z-index: 50;
   display: block;
-  animation: th-drop 0.8s var(--ease-out) 0.2s both;
+  animation: th-drop 0.8s var(--ease-out) 0.2s backwards;
 }
 
 // Reading-progress line driven by the page's scroll position (CSS only).

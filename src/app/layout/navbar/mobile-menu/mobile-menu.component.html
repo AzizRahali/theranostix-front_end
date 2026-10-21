@@ -1,0 +1,22 @@
+<div class="mmenu th-surface-deep th-grid" [id]="menuId"
+     [class.is-open]="open" [attr.inert]="open ? null : ''">
+  <nav aria-label="Primary">
+    <ol class="mmenu__links">
+      @for (link of links; track link.href; let i = $index) {
+        <li [style.--i]="i">
+          <a class="mmenu__link" [href]="link.href" (click)="navigate.emit()"
+             [class.is-active]="activeHref() === link.href"
+             [attr.aria-current]="activeHref() === link.href ? 'location' : null">
+            <span class="mmenu__num" aria-hidden="true">{{ i < 9 ? '0' + (i + 1) : i + 1 }}</span>
+            {{ link.label }}
+          </a>
+        </li>
+      }
+    </ol>
+  </nav>
+
+  <div class="mmenu__footer">
+    <app-button [href]="cta.href" variant="primary" (click)="navigate.emit()">{{ cta.label }}</app-button>
+    <a class="mmenu__email" [href]="email.href">{{ email.label }}</a>
+  </div>
+</div>

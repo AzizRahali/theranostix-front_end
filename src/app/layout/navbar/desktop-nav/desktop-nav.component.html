@@ -1,0 +1,13 @@
+<nav class="dnav" aria-label="Primary">
+  <span class="dnav__indicator" aria-hidden="true"></span>
+  <ul class="dnav__links">
+    @for (link of links; track link.href) {
+      <li>
+        <a class="dnav__link" [href]="link.href"
+           [class.is-active]="activeHref() === link.href"
+           [attr.aria-current]="activeHref() === link.href ? 'location' : null">{{ link.label }}</a>
+      </li>
+    }
+  </ul>
+  <app-button [href]="cta.href" variant="primary" size="sm">{{ cta.label }}</app-button>
+</nav>

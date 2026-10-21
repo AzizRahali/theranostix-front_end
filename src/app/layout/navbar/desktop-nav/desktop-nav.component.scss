@@ -1,0 +1,86 @@
+@use 'mixins' as *;
+
+:host {
+  display: none;
+
+  @include media('xl') {
+    display: block;
+  }
+}
+
+.dnav {
+  @include glass;
+  position: relative; // offset parent for the links, so the indicator can follow them
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 6px 6px 8px;
+  border-radius: var(--radius-pill);
+}
+
+:host-context(.is-scrolled) .dnav {
+  --glass-alpha: 0.9;
+}
+
+.dnav__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.dnav__link {
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 10px 16px;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  transition: color var(--transition-fast);
+
+  &:hover,
+  &.is-active {
+    color: #fff;
+  }
+  &:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+// Sliding highlight with a glowing "you are here" dot.
+.dnav__indicator {
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  left: 0;
+  width: var(--w, 0);
+  transform: translateX(var(--x, 0));
+  border-radius: var(--radius-pill);
+  background: rgba(var(--color-accent-rgb), 0.14);
+  box-shadow: inset 0 0 0 1px rgba(var(--color-accent-rgb), 0.32);
+  opacity: 0;
+  transition:
+    transform 0.5s var(--ease-out),
+    width 0.5s var(--ease-out),
+    opacity 0.3s ease;
+
+  &.is-visible {
+    opacity: 1;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 4px;
+    height: 4px;
+    margin-left: -2px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 8px 1px rgba(var(--color-accent-rgb), 0.8);
+  }
+}

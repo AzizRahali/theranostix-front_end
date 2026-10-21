@@ -25,3 +25,11 @@ export interface FeatureItem {
   readonly title: string;
   readonly description: string;
 }
+
+/** One consulting practice area: what it covers and the services it includes. */
+export interface ExpertiseArea {
+  readonly number: string;
+  readonly title: string;
+  readonly summary: string;
+  readonly services: readonly string[];
+}

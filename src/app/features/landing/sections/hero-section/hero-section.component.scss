@@ -25,7 +25,8 @@
 .hero__media {
   position: absolute;
   inset: 0;
-  animation: th-wipe-up 1.6s var(--ease-out) 150ms both;
+  overflow: hidden; // contains the parallax headroom (img scale)
+  animation: th-wipe-up 1.6s var(--ease-out) 150ms backwards;
 
   &::after {
     content: '';

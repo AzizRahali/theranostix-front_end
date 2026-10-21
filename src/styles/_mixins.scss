@@ -18,3 +18,11 @@ $breakpoints: (
     @content;
   }
 }
+
+// Frosted dark glass used by the navigation surfaces. `--glass-alpha`
+// lets a state (e.g. scrolled) deepen it without restating the recipe.
+@mixin glass {
+  background: rgba(var(--color-deep-rgb), var(--glass-alpha, 0.72));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

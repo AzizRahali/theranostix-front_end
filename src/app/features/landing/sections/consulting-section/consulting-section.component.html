@@ -1,0 +1,24 @@
+<section id="consulting" class="th-section th-surface-paper" appSpyTarget>
+  <div class="th-container">
+    <div class="th-split">
+      <div appReveal>
+        <app-eyebrow>{{ consulting.eyebrow }}</app-eyebrow>
+        <app-accent-heading [parts]="consulting.heading" />
+      </div>
+      <div class="th-prose" appReveal [revealDelay]="200">
+        @for (paragraph of consulting.paragraphs; track $index) {
+          <p>{{ paragraph }}</p>
+        }
+      </div>
+    </div>
+
+    <div class="consulting__expertise">
+      <h3 class="consulting__subtitle" appReveal>
+        {{ consulting.expertiseTitle }}
+        <span class="consulting__count">{{ consulting.areas.length }} areas</span>
+      </h3>
+      <app-expertise-accordion appReveal [revealDelay]="150"
+                               [areas]="consulting.areas" [headingLevel]="4" />
+    </div>
+  </div>
+</section>

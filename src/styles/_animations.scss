@@ -84,6 +84,35 @@
   }
 }
 
+// Vertical rule draws from its transform-origin.
+@keyframes th-draw-y {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+// A node switches on: pops in, overshoots, and sends out one pulse ring.
+@keyframes th-node-on {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0.6);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.08);
+    box-shadow: 0 0 0 12px rgba(var(--color-accent-rgb), 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    box-shadow: 0 0 0 0 rgba(var(--color-accent-rgb), 0);
+  }
+}
+
 // SVG stroke draws on (requires pathLength="1" and stroke-dasharray: 1).
 @keyframes th-draw {
   from {
@@ -203,8 +232,12 @@
   }
 }
 
+// `backwards`, not `both`: hold the start frame through the delay, but leave
+// nothing behind once finished. A lingering identity transform/filter/clip
+// still creates a containing block and stacking context, and renders the
+// element through an offscreen layer (sub-pixel seams at its edges).
 .th-motion .th-reveal.th-play {
-  animation: th-rise 1s var(--ease-out) both;
+  animation: th-rise 1s var(--ease-out) backwards;
   animation-delay: var(--reveal-delay, 0ms);
 }
 

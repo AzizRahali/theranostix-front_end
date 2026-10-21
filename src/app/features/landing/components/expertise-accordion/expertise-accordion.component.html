@@ -1,0 +1,29 @@
+<div class="acc">
+  @for (area of areas; track area.number; let i = $index) {
+    <div class="acc__item" [class.is-open]="openIndex() === i">
+      <div class="acc__heading" role="heading" [attr.aria-level]="headingLevel">
+        <button class="acc__trigger" type="button" [id]="uid + '-trigger-' + i"
+                [attr.aria-expanded]="openIndex() === i" [attr.aria-controls]="uid + '-panel-' + i"
+                (click)="toggle(i)">
+          <span class="acc__num">{{ area.number }}</span>
+          <span class="acc__title">{{ area.title }}</span>
+          <app-toggle-icon [open]="openIndex() === i" />
+        </button>
+      </div>
+
+      <div class="acc__panel" role="region" [id]="uid + '-panel-' + i"
+           [attr.aria-labelledby]="uid + '-trigger-' + i" [attr.inert]="openIndex() === i ? null : ''">
+        <div class="acc__clip">
+          <div class="acc__body">
+            <p class="acc__summary">{{ area.summary }}</p>
+            <ul class="acc__services">
+              @for (service of area.services; track service; let j = $index) {
+                <li [style.--i]="j">{{ service }}</li>
+              }
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

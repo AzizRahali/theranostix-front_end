@@ -1,20 +1,20 @@
 @use 'mixins' as *;
 
-%glass {
-  background: rgba(var(--color-deep-rgb), 0.72);
-  backdrop-filter: blur(14px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
 .nav {
   position: fixed;
   inset: 16px 0 auto;
   z-index: 50;
   pointer-events: none; // only the controls themselves are interactive
+  transition: inset 0.35s var(--ease-out);
+}
+
+:host(.is-scrolled) .nav {
+  inset: 10px 0 auto;
 }
 
 .nav__bar {
   position: relative;
+  z-index: 2; // stays above the open mobile menu
   max-width: var(--container-max);
   margin-inline: auto;
   padding-inline: 20px;
@@ -28,75 +28,19 @@
 }
 
 .nav__brand,
-.nav__menu,
+.nav__desktop,
 .nav__toggle {
   pointer-events: auto;
 }
 
 .nav__brand {
-  @extend %glass;
+  @include glass;
   padding: 10px 18px 10px 12px;
   border-radius: var(--radius-pill);
 }
 
-.nav__links {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-
-  a {
-    display: block;
-    padding: 10px 16px;
-    border-radius: var(--radius-pill);
-    font-family: var(--font-display);
-    font-size: 14px;
-    color: rgba(255, 255, 255, 0.82);
-    transition: color var(--transition-fast);
-
-    &:hover {
-      color: var(--color-accent-soft);
-    }
-  }
-}
-
-.nav__menu {
-  @extend %glass;
-  display: none;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 6px 6px 12px;
-  border-radius: var(--radius-pill);
-
-  @include media('xl') {
-    display: flex;
-  }
-}
-
-// Mobile panel.
-@media (max-width: 959.98px) {
-  .nav__menu--open {
-    display: flex;
-    position: absolute;
-    top: 64px;
-    inset-inline: 20px;
-    flex-direction: column;
-    align-items: stretch;
-    padding: 16px;
-    border-radius: var(--radius-lg);
-
-    .nav__links {
-      flex-direction: column;
-    }
-    .nav__links a {
-      font-size: 18px;
-      padding: 14px 16px;
-    }
-  }
-}
-
 .nav__toggle {
-  @extend %glass;
+  @include glass;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -107,6 +51,13 @@
 
   @include media('xl') {
     display: none;
+  }
+}
+
+:host(.is-scrolled) {
+  .nav__brand,
+  .nav__toggle {
+    --glass-alpha: 0.9;
   }
 }
 

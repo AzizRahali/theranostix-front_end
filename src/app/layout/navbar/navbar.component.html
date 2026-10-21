@@ -1,24 +1,18 @@
-<header class="nav" (keydown.escape)="close()">
+<header class="nav">
   <div class="nav__bar">
-    <a class="nav__brand" href="#top" [attr.aria-label]="nav.brand + ', back to top'">
+    <a class="nav__brand" href="#top" [attr.aria-label]="nav.brand + ', back to top'" (click)="close()">
       <app-brand-mark [name]="nav.brand" />
     </a>
 
-    <nav id="site-menu" class="nav__menu" [class.nav__menu--open]="menuOpen()" aria-label="Primary">
-      <ul class="nav__links">
-        @for (link of nav.links; track link.href) {
-          <li><a [href]="link.href" (click)="close()">{{ link.label }}</a></li>
-        }
-      </ul>
-      <app-button [href]="nav.cta.href" variant="primary" size="sm" (click)="close()">
-        {{ nav.cta.label }}
-      </app-button>
-    </nav>
+    <app-desktop-nav class="nav__desktop" [links]="nav.links" [cta]="nav.cta" />
 
-    <button class="nav__toggle" type="button" aria-controls="site-menu"
+    <button class="nav__toggle" type="button" [attr.aria-controls]="menuId"
             [attr.aria-expanded]="menuOpen()" (click)="toggle()">
       <span class="th-visually-hidden">{{ menuOpen() ? 'Close menu' : 'Open menu' }}</span>
       <span class="nav__burger" [class.nav__burger--open]="menuOpen()" aria-hidden="true"></span>
     </button>
   </div>
+
+  <app-mobile-menu [menuId]="menuId" [open]="menuOpen()" [links]="nav.links"
+                   [cta]="nav.cta" [email]="nav.email" (navigate)="close()" />
 </header>

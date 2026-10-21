@@ -136,3 +136,10 @@ button {
   white-space: nowrap;
   border: 0;
 }
+
+// Freeze the page behind the open mobile menu (the menu only exists below xl).
+@media (max-width: 959.98px) {
+  .th-menu-open {
+    overflow: hidden;
+  }
+}
